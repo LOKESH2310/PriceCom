@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" id="login">
+    <form action="{{ url_for('register') }}" method="post" class="col-md-10">{{ msg }}
+    <div class="mb-4">
+      <label for="exampleInputEmail1" class="form-label">Email</label>
+      <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+
+    <label for="exampleInputEmail1" class="form-label">Name</label>
+    <input name="username" type="text" class="form-control" id="inputPassword2" placeholder="Enter your product">
+    <br>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <p>Already have an account? <a href="/login">Sign in here!</a></p>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form> </div>
+{% endblock %}

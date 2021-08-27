@@ -1,0 +1,19 @@
+#form{padding-top: 10px;}
+
+#show{border:2px solid Violet; background: #e3f2fd; box-shadow: 0 2px 5px  }
+
+#login{padding-top: 100px;}
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  padding-left: 100px;}
+
+.title{
+color:red;
+}
+

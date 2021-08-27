@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="container" id="login">
+    <form action="{{ url_for('login') }}" method="post" class="col-md-10">{{ msg }}
+    <div class="mb-4">
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+    </div>
+    <p>Don't have an account? <a href="/register">Register here</a></p>
+    <br>
+<!--    <div class="mb-3 form-check">-->
+<!--      <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--      <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--    </div>-->
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form> </div>
+{% endblock %}

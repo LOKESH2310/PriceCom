@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+    <form accept="/" method="get" id="form">
+      <div class="row">
+        <div class="col-md-8">
+          <label for="inputPassword2" class="visually-hidden">Password</label>
+          <input type="text" name="search" class="form-control" id="inputPassword2" placeholder="Enter your product">
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary mb-3 form-control" >  Search  </button>
+        </div>
+      </div>
+    </form>
+    </div><br>
+    <!-- <div class="container">
+        {% for i in range(10) %}
+            <div class="row">
+                <div class="col-md-8" id="show">
+                    0+{{i}}<br>
+                    0+{{i}}<br>
+                    0+{{i}}<br>
+                    0+{{i}}<br>
+                    0+{{i}}<br>
+                </div>
+            </div>
+        <br>
+        {% endfor %}
+    </div> -->
+    <div class="row">
+      <div class="column">
+          <div class="container"><h1>Amazon</h1><br>
+
+        {% for row in data.searchData %}
+            <div class="row">
+                <div class="col-md-10 show" style="border:2px solid red">
+                    <img src="{{row[1]}}" height="50%" style="max-width:50%">
+                    <h3>{{row[0]}}</h3>
+                    {{row[3]}}
+                    <span class="price"><sup>₹</sup>{{row[2]}}</span>
+                    0+{{i}}<br>
+                    0+{{i}}<br>
+                </div>
+            </div>
+        <br>
+        {% endfor %}
+
+    </div>
+      </div>
+      <div class="column">
+          <div class="container"><h1>Flipkart</h1><br>
+        {% for i in range(10) %}
+            <div class="row">
+                <div class="col-md-10" id="show">
+                    0+{{i}}<br>
+                    0+{{i}}<br>
+                    0+{{i}}<br>
+                    0+{{i}}<br>
+                    0+{{i}}<br>
+                </div>
+            </div>
+        <br>
+        {% endfor %}
+    </div>
+      </div>
+    </div>
+{% endblock %}
+
+<!--.column {-->
+<!--  padding-left: 100px;-->
+<!--  float: left;-->
+<!--  width: 33.33%;-->
+<!--}-->
