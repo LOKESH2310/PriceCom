@@ -1,23 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <div class="container" id="login">
-    <form action="{{ url_for('login') }}" method="post" class="col-md-10">{{ msg }}
-    <div class="mb-4">
-      <label for="exampleInputEmail1" class="form-label">Name</label>
-      <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-    </div>
+  <div style="border-radius: 5px;
+  background: #F5F5F5;" class="container" id="login"><h3 >{{ msg }}</h3><br>
+    <form autocomplete="off" action="{{ url_for('login') }}" method="post" class="col-md-10">
+      <div class="mb-4">
+        <label style="border-radius: 5px;
+    background: #e3f2fd;" for="exampleInputEmail1" class="form-label">Name: </label>
+        <input name="username" type="text" class="form-control input" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+      </div>
 
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input name="password" type="password" class="form-control" id="exampleInputPassword1" required>
-    </div>
-    <p>Don't have an account? <a href="/register">Register here</a></p>
-    <br>
-<!--    <div class="mb-3 form-check">-->
-<!--      <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
-<!--      <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
-<!--    </div>-->
-    <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="mb-3">
+        <label style="border-radius: 5px;
+    background: #e3f2fd;" for="exampleInputPassword1" class="form-label">Password: </label>
+        <input size="10" name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+      </div>
+      <p style="border-radius: 5px;
+    background: #e3f2fd;">Don't have an account? <a href="/register">Register here</a></p>
+      <br>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
   </form> </div>
 {% endblock %}
