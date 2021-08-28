@@ -1,7 +1,17 @@
 #form{padding-top: 10px;}
 
-#show{border:2px solid Violet; background: #e3f2fd; box-shadow: 0 2px 5px  }
+#show{border:2px solid blue; background: #e3f2fd; box-shadow: 0 2px 5px  }
 
+#amazon{padding-left: 130px;}
+
+
+
+#flipkart{padding-left: 130px;}
+
+.myDiv{border-radius: 25px;
+  background: #FFFFFF;
+  padding: 20px;
+  text-align: center;}
 #login{padding-top: 100px;}
 
 .row {
