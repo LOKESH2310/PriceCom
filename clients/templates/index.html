@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+
     <div class="container">
-    <form accept="/" method="get" id="form">
+    <form accept="/" method="get" id="form" autocomplete="off" >
       <div class="row">
         <div class="col-md-8">
-          <label for="inputPassword2" class="visually-hidden">Password</label>
-          <input type="text" name="search" class="form-control" id="inputPassword2" placeholder="Enter your product">
+          <input type="text" name="search" value="{{data.query}}" class="form-control" id="inputPassword2" placeholder="Enter your product">
         </div>
         <div class="col-md-2">
-          <button type="submit" class="btn btn-primary mb-3 form-control" >  Search  </button>
+          <button type="submit" class="btn btn-primary mb-3 form-control"  >  Search  </button>
         </div>
       </div>
     </form>
@@ -28,46 +28,63 @@
         {% endfor %}
     </div> -->
     <div class="row">
+        {% if data.searchData != "" %}
       <div class="column">
-          <div class="container"><h1>Amazon</h1><br>
-
+          <div class="container"><h1 id="amazon"><a style="border-radius: 5px;
+  background: #FFFFFF;" href="{{data.original_url}}">Amazon</a></h1><br>
         {% for row in data.searchData %}
             <div class="row">
-                <div class="col-md-10 show" style="border:2px solid red">
-                    <img src="{{row[1]}}" height="50%" style="max-width:50%">
-                    <h3>{{row[0]}}</h3>
-                    {{row[3]}}
-                    <span class="price"><sup>₹</sup>{{row[2]}}</span>
-                    0+{{i}}<br>
-                    0+{{i}}<br>
+<!--                style="border:2px solid red"-->
+                <div class="col-md-12 myDiv" >
+                    <div class="container"><div class="row"><div class="col">
+                        <img src="{{row[1]}}" height="100%" style="max-width:80%"></div>
+                    <br>
+                    <div class="col-6">
+                    <h4>{{row[0]}}</h4>
+
+                    <br>
+                    <h4><span class="price">Price: ₹{{row[2]}}</span></h4>
+                    </div></div></div>
                 </div>
             </div>
         <br>
         {% endfor %}
-
     </div>
       </div>
       <div class="column">
-          <div class="container"><h1>Flipkart</h1><br>
-        {% for i in range(10) %}
+
+          <div class="container"><h1 id="flipkart"><a style="border-radius: 5px;
+  background: #FFFFFF;" href="{{dataflip.original_url}}">Flipkart</a></h1><br>
+        {% for row in dataflip.searchData %}
             <div class="row">
-                <div class="col-md-10" id="show">
-                    0+{{i}}<br>
-                    0+{{i}}<br>
-                    0+{{i}}<br>
-                    0+{{i}}<br>
-                    0+{{i}}<br>
+<!--                style="border:2px solid red"-->
+                <div class="col-md-12 myDiv" >
+                    <div class="container"><div class="row"><div class="col">
+                    <img src="{{row[1]}}" height="80%" style="max-width:60%"></div>
+                    <div class="col-6">
+                    <h3>{{row[0]}}</h3>
+                    <span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        {{row[3]}}
+                    </span>
+                    <br>
+                    <h4><span class="price">Price: {{row[2]}}</span></h4>
+                    </div></div></div>
                 </div>
             </div>
         <br>
         {% endfor %}
     </div>
       </div>
+        {% else %}
+        <h1 style="border-radius: 5px;
+  background: #FFFFFF;"> No result found or You may have not search anything . <br>please search any product 🥰 </h1>
+        {% endif %}
     </div>
 {% endblock %}
 
-<!--.column {-->
-<!--  padding-left: 100px;-->
-<!--  float: left;-->
-<!--  width: 33.33%;-->
-<!--}-->
+
