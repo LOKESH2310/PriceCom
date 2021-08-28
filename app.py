@@ -12,6 +12,9 @@ import time
 amazon_scraper = AutoScraper()
 amazon_scraper.load('amazon.json')
 
+flipkart_scraper = AutoScraper()
+flipkart_scraper.load('flipkart.json')
+
 app = Flask(__name__, template_folder="clients/templates", static_folder="clients/static")
 
 app.secret_key = 'pycharm'
@@ -19,7 +22,6 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'MSlokesh23'
 app.config['MYSQL_DB'] = 'pricecomparisionlogin'
-
 mysql = MySQL(app)
 
 # @app.route('/')
@@ -41,7 +43,7 @@ def login():
 			session['username'] = account['username']
 			msg = 'Logged in successfully !'
 			# change = username
-			return render_template('login.html')
+			return render_template('login.html', msg = msg)
 		else:
 			msg = 'Incorrect username / password !'
 	return render_template('login.html', msg = msg)
@@ -89,16 +91,20 @@ def home():
 
         # call function to retrieve data
         search_data, original_url = searchquery(search, sortby)
-
+        search_dataflip, original_urlflip = searchqueryflip(search, sortby)
+        data_lengthflip = len(search_dataflip)
         data_length = len(search_data)
 
         # show to user
         return render_template("index.html", data={'original_url': original_url, 'query': search, 'sortby': sortby,
-                                                   'searchData': search_data, 'totalRecords': data_length})
+                                                   'searchData': search_data, 'totalRecords': data_length},
+							   dataflip={'original_url': original_urlflip, 'query': search, 'sortby': sortby,
+                                                   'searchData': search_dataflip, 'totalRecords': data_lengthflip})
 
         # default data_length when no search
     data_length = -1
-    return render_template("index.html", data={'query': "", 'searchData': "d", 'totalRecords': data_length})
+    data_lengthflip = -1
+    return render_template("index.html", data={'query': "", 'searchData': "", 'totalRecords': data_length}, dataflip={'query': "", 'searchDataflip': "d", 'totalRecords': data_lengthflip})
 
 def searchquery(search, sortby):
     # load library
@@ -120,6 +126,28 @@ def searchquery(search, sortby):
 
     # returing data
     return search_data, amazon_url
+
+
+def searchqueryflip(search, sortby):
+    # load library
+
+    # define url
+    flipkart_url = "https://www.flipkart.com/search?q={}".format(search, sortby)
+
+    # get data
+    data = flipkart_scraper.get_result_similar(flipkart_url, group_by_alias=True)
+
+    # combine data into tuple to show it to user
+    search_data = tuple(zip(data['Title'], data['ImageUrl'], data['Price']))
+
+    # creating dataframe so that user can download it in csv format
+    df = pd.DataFrame(columns=['Query', 'Title', 'Price', 'ImageUrl'])
+    for i in range(len(search_data)):
+        df.loc[len(df)] = [search, search_data[i][0], search_data[i][2], search_data[i][1]]
+    df.to_csv("clients/static/searchedDataflip.csv", index=False)
+
+    # returing data
+    return search_data, flipkart_url
 
 
 if __name__ == "__main__":
